@@ -16,7 +16,7 @@ RUN \
   rm -f /tmp/grafana.deb && \
   curl -L https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64 > /usr/sbin/gosu && \
   chmod +x /usr/sbin/gosu && \
-  for plugin in $(curl -s https://grafana.net/api/plugins?orderBy=name | jq '.items[] | select(.internal=='false') | .slug' | tr -d '"'); do grafana-cli --pluginsDir "${GF_PLUGIN_DIR}" plugins install $plugin; done && \
+  for plugin in $(curl -s https://grafana.net/api/plugins?orderBy=name | jq '.items[] | select(.internal=='false') | .slug' | tr -d '"'); do grafana-cli --pluginsDir "${PLUGIN_DIR}" plugins install $plugin; done && \
   chmod +x /go.sh && \
   apt-get remove -y --force-yes curl git jq && \
   apt-get autoremove -y --force-yes && \
